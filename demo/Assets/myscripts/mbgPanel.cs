@@ -50,8 +50,16 @@ public class CUser
 
 	public static CUser Instance()
 	{
-		if (m_instance == null) m_instance = new CUser ();
+		if (m_instance == null) 
+		{
+			m_instance = new CUser ();
+		}
 		return m_instance;
+	}
+
+	public int GetBuildLevel(int iBType)
+	{
+		return m_dUserBuilds [iBType];
 	}
 }
 
@@ -71,5 +79,29 @@ public class mbgPanel : MonoBehaviour {
 	void TownHallClickEvent(GameObject goButton)
 	{
 		goTownHall.SetActive (true);
+		var goGriffin = goTownHall.transform.Find ("griffinSprite");
+		UISprite uspGri = goGriffin.GetComponent<UISprite> ();
+		//查看建筑修建条件是否达成
+
+		if (CUser.Instance().GetBuildLevel(cGameDataDef.CampTower) > 0)
+		{
+			uspGri.spriteName = "griffin";
+		}
+		else
+		{
+			uspGri.spriteName = "griffin_un";
+		}
+
+		var goCamp = goTownHall.transform.Find ("campSprite");
+		UISprite uspCamp = goCamp.GetComponent<UISprite> ();
+		//查看建筑修建条件是否达成
+		if (CUser.Instance().GetBuildLevel(cGameDataDef.WatchTower) > 0)
+		{
+			uspCamp.spriteName = "camp";
+		}
+		else
+		{
+			uspCamp.spriteName = "camp";
+		}
 	}
 }
