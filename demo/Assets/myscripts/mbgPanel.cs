@@ -104,4 +104,7 @@ public class mbgPanel : MonoBehaviour {
 			uspCamp.spriteName = "camp";
 		}
 	}
+
+	//建筑建造
+
 }
