@@ -37,6 +37,9 @@ public class buildSprite : MonoBehaviour {
 	//	go.SetActive (false);
 
 		GameObject.Find ("buildings").SetActive (false);
+
+		//修建建筑
+
 	}
 
 	void BuildIFClickEvent(GameObject goButton)

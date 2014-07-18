@@ -1,12 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\myscripts\mbgPanel.cs">
     <Files>
-      <File FileName="demo.sln" Line="1" Column="1" />
-      <File FileName="Assets\NGUI\Scripts\Internal\UIEventListener.cs" Line="53" Column="1" />
-      <File FileName="Assets\myscripts\buildSprite.cs" Line="39" Column="2" />
-      <File FileName="Assets\myscripts\mbgPanel.cs" Line="98" Column="51" />
-      <File FileName="Assets\NGUI\Scripts\Internal\UIEventListener.cs" Line="1" Column="1" />
+      <File FileName="Assets\myscripts\buildSprite.cs" Line="37" Column="26" />
+      <File FileName="Assets\myscripts\mbgPanel.cs" Line="49" Column="62" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

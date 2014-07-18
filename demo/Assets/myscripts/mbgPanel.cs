@@ -27,13 +27,26 @@ public class cGameDataDef
 	public static int Heaven = 7;
 
 	public static int BuildingType = 7;			//建筑种类
+
+	public static int ArmOnBattleNum = 7;		//出征部队最大类型数
 }
 
 //玩家数据
 public class CUser
 {
 //	public int[] UserBuilds = new int[cGameDataDef.BuildingType];
+	//建筑信息
 	public Dictionary<int, int>	m_dUserBuilds = new Dictionary<int, int> ();
+
+	//部队信息
+	public struct Arm
+	{
+		public int iType;	//类型
+		public int iNum;	//数量
+		public int iStar;	//星级
+	}
+
+	public Arm[] m_armInfo = new Arm[cGameDataDef.ArmOnBattleNum];
 
 	private static CUser m_instance = null;
 
