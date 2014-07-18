@@ -6,7 +6,7 @@ public class buildSprite : MonoBehaviour {
 	public GameObject goBuildIF;
 	GameObject goCancel;
 
-	bool bClickFlag = false;
+//	bool bClickFlag = false;
 	// Use this for initialization
 	void Start () {
 		GameObject goGriffin = GameObject.Find ("griffinSprite");
@@ -29,6 +29,16 @@ public class buildSprite : MonoBehaviour {
 		goBuildIF.SetActive (false);
 	}
 
+	//建筑修建确认回调
+	void ConfirmClickEvent(GameObject goButton)
+	{
+		//Debug.Log (mbgPanel.Instance ().goTownHall.);
+	//	var go = mbgPanel.Instance ().goTownHall;
+	//	go.SetActive (false);
+
+		GameObject.Find ("buildings").SetActive (false);
+	}
+
 	void BuildIFClickEvent(GameObject goButton)
 	{
 //		Debug.Log ("game name" + goButton.name);
@@ -44,7 +54,28 @@ public class buildSprite : MonoBehaviour {
 //		}
 
 		goBuildIF.SetActive (true);
-		goCancel = GameObject.Find ("cancelSprite");
-		UIEventListener.Get (goCancel).onClick = CancelClickEvent;
+		if (goCancel == null)
+		{
+			goCancel = GameObject.Find ("cancelSprite");
+			UIEventListener.Get (goCancel).onClick = CancelClickEvent;
+		}
+
+		var goConfirm = GameObject.Find("confirmSprite");
+		//var goConfirm = goBuildIF.transform.Find("confirmSprite");
+		UISprite uspConfirm = goConfirm.GetComponent<UISprite> ();
+
+		if (goButton.name == "griffinSprite")
+		{
+			uspConfirm.spriteName = "confirmbuild_un";
+		}
+		else if (goButton.name == "campSprite")
+		{	
+			uspConfirm.spriteName = "confirmbuild";
+		}
+
+		if (uspConfirm.spriteName == "confirmbuild")
+		{
+			UIEventListener.Get(goConfirm).onClick = ConfirmClickEvent;
+		}
 	}
 }

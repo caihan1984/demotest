@@ -65,6 +65,15 @@ public class CUser
 
 public class mbgPanel : MonoBehaviour {
 	public GameObject goTownHall;
+	GameObject goCancelBuild;
+
+	private static mbgPanel m_instance = null;
+
+	public static mbgPanel Instance()
+	{
+		if (m_instance == null) m_instance = new mbgPanel();
+		return m_instance;
+	}
 	// Use this for initialization
 	void Start () {
 		GameObject goButton = GameObject.Find ("internalBuild");
@@ -76,9 +85,19 @@ public class mbgPanel : MonoBehaviour {
 	
 	}
 
+	void CancelClickEvent(GameObject goCancel)
+	{
+		goTownHall.SetActive (false);
+	}
+
 	void TownHallClickEvent(GameObject goButton)
 	{
 		goTownHall.SetActive (true);
+		if (goCancelBuild == null)
+		{
+			goCancelBuild = GameObject.Find ("cancelBuildsp");
+			UIEventListener.Get (goCancelBuild).onClick = CancelClickEvent;
+		}
 		var goGriffin = goTownHall.transform.Find ("griffinSprite");
 		UISprite uspGri = goGriffin.GetComponent<UISprite> ();
 		//查看建筑修建条件是否达成
