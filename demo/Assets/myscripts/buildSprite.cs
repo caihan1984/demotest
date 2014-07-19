@@ -5,6 +5,10 @@ public class buildSprite : MonoBehaviour {
 	//gameObject区别用法
 	public GameObject goBuildIF;
 	GameObject goCancel;
+	GameObject goConfirm;
+	public GameObject goCampBuild;
+
+	public GameObject goRecruitFrame;
 
 //	bool bClickFlag = false;
 	// Use this for initialization
@@ -38,8 +42,25 @@ public class buildSprite : MonoBehaviour {
 
 		GameObject.Find ("buildings").SetActive (false);
 
-		//修建建筑
+		goCampBuild.SetActive (true);
+		var upt = goCampBuild.GetComponent<UIPlayTween> ();
+		upt.Play (true);
 
+		GameObject goFrame = GameObject.Find ("campBuild");
+		UIEventListener.Get (goFrame).onClick = RecruitFrameClickEvent;
+
+		//修建建筑?????????????????????????????? 同名sprite 这里回调找不到go 回调参数
+		//mbgPanel.Instance ().BuildCamp ();  继承MonoBehaviour new
+//		var go = mbgPanel.Instance ().goCampBuild;
+//		go.SetActive (true);
+	}
+
+	void RecruitFrameClickEvent(GameObject go)
+	{
+		goRecruitFrame.SetActive (true);
+
+		GameObject goCamp = GameObject.Find ("ceruitFrame/confirmSprite");
+		UIEventListener.Get (goCamp).onClick = mbgPanel.Instance().RecruitClickEvent;
 	}
 
 	void BuildIFClickEvent(GameObject goButton)

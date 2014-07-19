@@ -29,6 +29,14 @@ public class cGameDataDef
 	public static int BuildingType = 7;			//建筑种类
 
 	public static int ArmOnBattleNum = 7;		//出征部队最大类型数
+
+	public static int PikeMan = 1;				//步兵
+	public static int Archer = 2;				//弓箭
+	public static int Griffin = 3;				//狮鹫骑士
+	public static int SwordMan = 4;				//剑士
+	public static int Friar = 5;				//修道士
+	public static int Knight = 6;				//骑士
+	public static int Angel = 7;				//天使
 }
 
 //玩家数据
@@ -38,7 +46,7 @@ public class CUser
 	//建筑信息
 	public Dictionary<int, int>	m_dUserBuilds = new Dictionary<int, int> ();
 
-	//部队信息
+	//部队信息	
 	public struct Arm
 	{
 		public int iType;	//类型
@@ -46,6 +54,7 @@ public class CUser
 		public int iStar;	//星级
 	}
 
+	//玩家部队
 	public Arm[] m_armInfo = new Arm[cGameDataDef.ArmOnBattleNum];
 
 	private static CUser m_instance = null;
@@ -74,11 +83,27 @@ public class CUser
 	{
 		return m_dUserBuilds [iBType];
 	}
+
+	//public void RecruitArm(int iArmType, int iNum, int iStar)
+	public void RecruitArm(Arm armInfo)
+	{
+		Debug.Log("recruit arm");
+		for (int i = 0; i < cGameDataDef.ArmOnBattleNum; ++i)
+		{
+			if (m_armInfo[i].iType == 0)
+			{
+				m_armInfo[i] = armInfo;
+				return;
+			}
+		}
+		return;
+	}
 }
 
 public class mbgPanel : MonoBehaviour {
 	public GameObject goTownHall;
 	GameObject goCancelBuild;
+//	public GameObject goCampBuild;
 
 	private static mbgPanel m_instance = null;
 
@@ -97,6 +122,15 @@ public class mbgPanel : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	//这里执行不能获取goCampBuild
+//	public void BuildCamp()
+//	{
+//		Debug.Log("build camp");
+//		goCampBuild.SetActive(true);
+//		var upt = goCampBuild.GetComponent<UIPlayTween> ();
+//		upt.Play (true);
+//	}
 
 	void CancelClickEvent(GameObject goCancel)
 	{
@@ -135,6 +169,15 @@ public class mbgPanel : MonoBehaviour {
 		{
 			uspCamp.spriteName = "camp";
 		}
+	}
+
+	public void RecruitClickEvent(GameObject go)
+	{
+		CUser.Arm arm = new CUser.Arm ();
+		arm.iNum = 10;
+		arm.iStar = 2;
+		arm.iType = cGameDataDef.SwordMan;
+		CUser.Instance().RecruitArm(arm);
 	}
 
 	//建筑建造
