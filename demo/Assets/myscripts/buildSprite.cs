@@ -33,8 +33,10 @@ public class buildSprite : MonoBehaviour {
 		goBuildIF.SetActive (false);
 	}
 
+
+
 	//建筑修建确认回调
-	void ConfirmClickEvent(GameObject goButton)
+	public void ConfirmClickEvent(GameObject goButton)
 	{
 		//Debug.Log (mbgPanel.Instance ().goTownHall.);
 	//	var go = mbgPanel.Instance ().goTownHall;
@@ -45,6 +47,8 @@ public class buildSprite : MonoBehaviour {
 		goCampBuild.SetActive (true);
 		var upt = goCampBuild.GetComponent<UIPlayTween> ();
 		upt.Play (true);
+
+	
 
 		GameObject goFrame = GameObject.Find ("campBuild");
 		UIEventListener.Get (goFrame).onClick = RecruitFrameClickEvent;
@@ -60,7 +64,7 @@ public class buildSprite : MonoBehaviour {
 		goRecruitFrame.SetActive (true);
 
 		GameObject goCamp = GameObject.Find ("ceruitFrame/confirmSprite");
-		UIEventListener.Get (goCamp).onClick = mbgPanel.Instance().RecruitClickEvent;
+		UIEventListener.Get (goCamp).onClick = GameStart.mbp.GetComponent<mbgPanel> ().RecruitClickEvent;//mbgPanel.Instance().RecruitClickEvent;
 	}
 
 	void BuildIFClickEvent(GameObject goButton)
